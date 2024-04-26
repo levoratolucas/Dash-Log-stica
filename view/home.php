@@ -51,7 +51,7 @@ $css = 'table';
                 JOIN spree_users u ON u.id = o.user_id
                 JOIN employee_shopkeeper_stores e ON e.spree_user_id = u.id
                 WHERE spa.firstname ='' and o.state = 'complete' and to_char(completed_at,'YY')>'23' ";
-                renderTableFromQuery("table", $db_pg, $query);
+                renderTableFromQuery("table","Nenhum dado encontrado", $db_pg, $query);
                 ?>
             </div>
         </div>

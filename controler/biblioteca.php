@@ -179,8 +179,9 @@
 
     .menu {
         width: calc(100% - 150px);
-        min-height: 500px;
+        min-height: 800px;
         background-color: #E886C5;
+        
     }
 
     .dados_full {
@@ -189,6 +190,7 @@
         width: 100%;
         justify-content: space-around;
         text-align: center;
+        background-color: #E886C5;
     }
 
     .dados {
@@ -357,23 +359,5 @@
         .form {
             display: flex;
         }
-    }
-</style>
-<style>
-    main,
-    header,
-    .dados_full,
-    .lateral,
-    body {
-        background-color: <?php echo $color; ?>;
-    }
-
-    .logon {
-        width: 100px;
-        height: 100%;
-        background-image: url(../imag/yoobe\ logo\ 23.png);
-        background-position: left top;
-        background-size: 100%;
-        background-repeat: no-repeat;
     }
 </style>

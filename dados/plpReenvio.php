@@ -1,11 +1,11 @@
 <?php
-session_start();
+// session_start();
 // include '../config/check_auth.php';
 if ($_SESSION['loja'] != 999) {
     header('Location: pedidos.php');
     exit();
 }
-include "../config/config.php";
+// include "../config/config.php";
 $message = '';
 $search_condition = '';
 $show_insert_button = false;

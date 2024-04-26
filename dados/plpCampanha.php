@@ -1,11 +1,11 @@
 <?php
-session_start();
+// session_start();
 if ($_SESSION['loja'] != 999) {
     header('Location: pedidos.php');
     exit();
 }
-include '../controler/biblioteca.php';
-include '../config/config.php';
+// include '../controler/biblioteca.php';
+// include '../config/config.php';
 ?>
 <?php
 $message2 = '';
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Query de inserção
             $sql_insert = "INSERT INTO tb_csv_plp (cartao, plp, dt_envio, dt_previsao, status, objeto, destinatario, cep, endereco, bairro, numero, complemento, cidade, uf, departamento, vlrdecla, valor, peso, codservico, conteudo, entregue, url_rastreio, nf, store_id, is_workspace, email, order_number, eventos, hist_concluido) 
-                VALUES ('" . $row['cartao'] . "', '" . $row['plp'] . "', '" . $dt_envio . "', '" . $dt_previsao . "', '" . $status . "', '" . $objeto . "', '" . mb_convert_case($nome, MB_CASE_TITLE) . "', '" . $row['cep'] . "', '" . $row['endereco'] . "', '" . $row['bairro'] . "', '" . $row['numero'] . "', '" . $row['complemento'] . "', '" . $row['cidade'] . "', '" . $row['uf'] . "', '" . $row['departamento'] . "', '" . $row['vlrdecla'] . "', '" . $row['valor'] . "', '" . $row['peso'] . "', '" . $row['codservico'] . "', '" . $row['conteudo'] . "', '" . $row['entregue'] . "', 'https://rastreamento.correios.com.br/app/index.php?objetos=" . $objeto . "', '" . $row['nf'] . "', '" . $row['store_id'] . "', '" . $row['is_workspace'] . "', '" . $email . "', '0', '0', 0)";
+                VALUES ('" . $row['cartao'] . "', '" . $row['plp'] . "', '" . $dt_envio . "', '" . $dt_previsao . "', '" . $status . "', '" . $objeto . "', '" . mb_convert_case($nome, MB_CASE_TITLE) . "', '" . $row['cep'] . "', '" . $row['endereco'] . "', '" . $row['bairro'] . "', '" . $row['numero'] . "', '" . $row['complemento'] . "', '" . $row['cidade'] . "', '" . $row['uf'] . "', '" . $row['departamento'] . "', '" . $row['vlrdecla'] . "', '" . $row['valor'] . "', '" . $row['peso'] . "', '" . $row['codservico'] . "', '" . $row['conteudo'] . "', 0, 'https://rastreamento.correios.com.br/app/index.php?objetos=" . $objeto . "', '" . $row['nf'] . "', '" . $row['store_id'] . "', '" . $row['is_workspace'] . "', '" . $email . "', '0', '0', 0)";
 
             echo "'" . $row['order_number'] . "--" . $row['destinatario'] . "--" . $objeto . "--PLP inserida com sucesso";
 

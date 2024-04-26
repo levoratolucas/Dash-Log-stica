@@ -31,9 +31,9 @@ $css = 'table table-striped-columns';
 </head>
 
 <body>
-<?php 
+    <?php
     include '../config/seletorLoja.php';
-    if($loja == 999){
+    if ($loja == 999) {
         $loja = 484;
     }
     ?>
@@ -61,77 +61,80 @@ $css = 'table table-striped-columns';
             </form>
         </div>
         <div class="menu">
-            <div class="dados_full">
-                <div class="dados">
-
+            <div class="dados_full" style="margin-top: 10px;">
+                <div class="dados" style="overflow: none;">
+                    <h3>Chart envios por mês</h3>
                     <?php
                     $query = "select count(number) PEDIDOS,to_char(completed_at,'YYYY-MM') x
-            from spree_orders 
-            where state='complete' 
-            and store_id = " . $loja . " and to_char(completed_at,'YYYY-MM') is not null 
-            GROUP BY to_char(completed_at,'YYYY-MM')
-            ORDER BY to_char(completed_at,'YYYY-MM')";
+                    from spree_orders 
+                    where state='complete' 
+                    and store_id = " . $loja . " and to_char(completed_at,'YYYY-MM') is not null 
+                    GROUP BY to_char(completed_at,'YYYY-MM')
+                    ORDER BY to_char(completed_at,'YYYY-MM')";
                     $x = queryArray($db_pg, $query, 'x');
                     $query = "SELECT code as x FROM spree_stores WHERE id = " . $loja;
-                    $datasets = queryArray($db_pg, $query, 'x');
+                    $datasets = [''];
                     $datasetValues = [];
                     $i = 0;
                     foreach ($datasets as $value) {
                         $query = "select count(number) as x,to_char(completed_at,'YYYY-MM') PERIODO
-                from spree_orders 
-                where state='complete' 
-                and store_id = " . $loja . "
-                GROUP BY to_char(completed_at,'YYYY-MM')
-                ORDER BY to_char(completed_at,'YYYY-MM')";
+                        from spree_orders 
+                        where state='complete' 
+                        and store_id = " . $loja . "
+                        GROUP BY to_char(completed_at,'YYYY-MM')
+                        ORDER BY to_char(completed_at,'YYYY-MM')";
                         $datasetValues[$i] = queryArray($db_pg, $query, 'x');
                         $i++;
                     }
-                    renderLineChart('teste', 6, 'ENVIOS POR TAG', $x, $datasets, $datasetValues);
+                    renderLineChart('teste', 6, 'Últimos 12 meses', $x, $datasets, $datasetValues);
 
                     ?>
                 </div>
-
                 <div class="dados">
-                    <?php
-                    $query = "select count(sp.name) AS QTD,sp.name PRODUTO from spree_line_items sli 
-            join spree_orders so on so.id = sli.order_id
-            join spree_variants sv on sli.variant_id=sv.id 
-            join spree_products sp on sv.product_id = sp.id
-            join spree_stores st on so.store_id = st.id
-            where  st.id <>414 and so.state <> 'cart' and so.store_id =" . $loja . "
-            group by sp.name
-            order by count(sp.name) desc";
-
-                    $data = executeQuery($db_pg, $query);
-                    renderTable($data, 'table');
-                    ?>
-                </div>
-                <div class="dados">
-                    <?php
-                    $query = "select count(number) AS QTD,to_char(completed_at,'YYYY') ANO
-           from spree_orders 
-           where state='complete' 
-           and store_id = " . $loja . " and to_char(completed_at,'YYYY') is not null
-           GROUP BY to_char(completed_at,'YYYY')
-           ORDER BY to_char(completed_at,'YYYY')";
-                    $css = 'table';
-                    $data = executeQuery($db_pg, $query);
-                    renderTable($data, 'table');
-                    ?>
-                </div>
-                <div class="dados">
+                    <h3>Envios por mês</h3>
                     <?php
                     $query = "select count(number) AS QTD,to_char(completed_at,'YYYY-MM') PERIODO
-            from spree_orders 
-            where state='complete' 
-            and store_id = " . $loja . " and to_char(completed_at,'YYYY-MM') is not null
-            GROUP BY to_char(completed_at,'YYYY-MM')
-            ORDER BY to_char(completed_at,'YYYY-MM')";
+                    from spree_orders 
+                    where state='complete' 
+                    and store_id = " . $loja . " and to_char(completed_at,'YYYY-MM') is not null
+                    GROUP BY to_char(completed_at,'YYYY-MM')
+                    ORDER BY to_char(completed_at,'YYYY-MM')";
                     $css = 'table';
                     $data = executeQuery($db_pg, $query);
                     renderTable($data, 'table');
                     ?>
                 </div>
+                <div class="dados">
+                    <h3>Hancking produtos</h3>
+                    <?php
+                    $query = "select count(sp.name) AS QTD,sp.name PRODUTO from spree_line_items sli 
+                    join spree_orders so on so.id = sli.order_id
+                    join spree_variants sv on sli.variant_id=sv.id 
+                    join spree_products sp on sv.product_id = sp.id
+                    join spree_stores st on so.store_id = st.id
+                    where  st.id <>414 and so.state <> 'cart' and so.store_id =" . $loja . "
+                    group by sp.name
+                    order by count(sp.name) desc";
+
+                    $data = executeQuery($db_pg, $query);
+                    renderTable($data, 'table');
+                    ?>
+                </div>
+                <div class="dados">
+                    <h3>Envios por ano</h3>
+                    <?php
+                    $query = "select count(number) AS QTD,to_char(completed_at,'YYYY') ANO
+                    from spree_orders 
+                    where state='complete' 
+                    and store_id = " . $loja . " and to_char(completed_at,'YYYY') is not null
+                    GROUP BY to_char(completed_at,'YYYY')
+                    ORDER BY to_char(completed_at,'YYYY')";
+                    $css = 'table';
+                    $data = executeQuery($db_pg, $query);
+                    renderTable($data, 'table');
+                    ?>
+                </div>
+
             </div>
 
         </div>

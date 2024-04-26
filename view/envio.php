@@ -159,7 +159,7 @@ $css = 'table table-striped-columns';
             GROUP BY `plp`,date_format(`dt_envio`,'%y-%m')
             ORDER BY date_format(`dt_envio`,'%y-%m') DESC";
 
-                    renderTableFromQuery("table", $db_apisup, $query);
+                    renderTableFromQuery("table","Nenhum dado encontrado", $db_apisup, $query);
 
                     ?>
                 </div>
@@ -171,7 +171,7 @@ $css = 'table table-striped-columns';
            GROUP BY `conteudo`,YEAR(`dt_envio`)
            ORDER BY YEAR(`dt_envio`) DESC";
                     $css = 'table';
-                    renderTableFromQuery("table", $db_apisup, $query);
+                    renderTableFromQuery("table","Nenhum dado encontrado", $db_apisup, $query);
 
                     ?>
                 </div>
@@ -183,7 +183,7 @@ $css = 'table table-striped-columns';
             GROUP BY `conteudo`,date_format(`dt_envio`,'%y-%m')
             ORDER BY date_format(`dt_envio`,'%y-%m') DESC";
                     $css = 'table';
-                    renderTableFromQuery("table", $db_apisup, $query);
+                    renderTableFromQuery("table","Nenhum dado encontrado", $db_apisup, $query);
 
                     ?>
                 </div>

@@ -34,7 +34,7 @@
         }
 
         .container15 {
-            
+
             /* border: solid black; */
             height: 700px;
             width: 600px;
@@ -52,17 +52,55 @@
                 511 => ['cor' => 'purple', 'url_imagem' => './imag/camiseta_mockup_yp.png'],
                 455 => ['cor' => 'red', 'url_imagem' => './imag/camiseta_mockup_bt.png']
             ];
+
             if (isset($_GET['loja'])) {
                 $loja = $_GET['loja'];
                 if (isset($lojas[$loja])) {
+                    $levoratech = '';
                     $cor_fundo = $lojas[$loja]['cor'];
                     $url_imagem = $lojas[$loja]['url_imagem'];
                     echo "background-image: url(" . $url_imagem . "); }body { background-color: $cor_fundo; ";
                 } else {
-                    echo "background-image: url('./imag/avatar_redondo_yoobe.png'); }body {background-color: #86E0E8; }";
+                    echo "  background-image: url(./imag/tag.png); 
+                        background-size:180%;
+                        background-position:30% 30%;
+
+                        height: 500px;
+                    }
+                    body {
+                        background-color:black; ";
+                    $levoratech = '.logo{
+                            width: 150px;
+                            height: 60px;
+                            background-image: url(./imag/logoLevoratech.png);
+                            margin: auto;
+                            margin-bottom: 30px;
+                            background-size: 100%;
+                            /* background-size: cover; */
+                            background-position: center;
+                            background-repeat: no-repeat;
+                        }';
                 }
             } else {
-                echo " background-image: url('./imag/avatar_redondo_yoobe.png'); }body {background-color: #86E0E8; ";
+                echo "  background-image: url(./imag/tag.png); 
+                        background-size:180%;
+                        background-position:30% 30%;
+
+                        height: 500px;
+                    }
+                    body {
+                        background-color:black; ";
+                $levoratech = '.logo{
+                            width: 150px;
+                            height: 60px;
+                            background-image: url(./imag/logoLevoratech.png);
+                            margin: auto;
+                            margin-bottom: 30px;
+                            background-size: 100%;
+                            /* background-size: cover; */
+                            background-position: center;
+                            background-repeat: no-repeat;
+                        }';
             }
             ?>
         }
@@ -124,7 +162,7 @@
             background-position: top; */
         }
 
-        @media screen and (max-width: 800px) {
+        <?= $levoratech ?>@media screen and (max-width: 800px) {
             body {
 
                 background-size: 20%;
@@ -167,7 +205,21 @@
                 <input type="password" id="password" name="password" required><br>
                 <input type="password" id="loja" name="loja" style="display: none;"><br>
                 <input type="submit" value="Entrar">
+                <div style="display: flex;">
+                    <div style="margin: auto;" >
+                        <input type="radio" id="dark" name="theme" value="dark">
+                        <label for="dark">Dark</label>
+                    </div>
+                    <div style="margin: auto;" >
+
+                        <input type="radio" id="light" name="theme" value="light">
+                        <label for="light">Light</label>
+                    </div>
+
+                </div>
+
             </form>
+
         </div>
     </div>
 </body>
