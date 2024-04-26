@@ -16,20 +16,7 @@ require './layout/header.php';
     <a href="https://yoobe.zendesk.com/auth/v2/login" target="_blank">ZENDESK</a>
     <a href="https://account.postmarkapp.com/login" target="_blank">POSTMARK</a>
     <a href="https://erp.tiny.com.br" target="_blank">TINY</a>
-    <div class="dados95" id="dadosReenvio">
-        <div>
-            <h3>Plp reenvio</h3>
-            <?php
-            include '../dados/plpReenvio.php';
-            ?>
-        </div>
-        <div>
-            <h3>Plp campanha</h3>
-            <?php
-            include '../dados/plpCampanha.php';
-            ?>
-        </div>
-    </div>
+   
 </div>
 <div class="menu">
     <div class="dados_full">
